@@ -30,6 +30,11 @@ $(document).on('pageinit', '#home', function() {
 		contentType : "application/json",
 		dataType : 'jsonp'
 	});
+	
+	 var reader = new FileReader();
+	 reader.readAsText('file.txt');
+
+	
 });
 //-----------------------------------------------------------
 $(document).on("click", "#home ul li", function() {
