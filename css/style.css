@@ -1,0 +1,27 @@
+* {
+	direction: rtl;
+}
+#home h1 {
+	font-size: 18px;
+	text-align: center;
+}
+
+.mlist {
+	text-align: center;
+	list-style: none;
+	width: 40%;
+	margin: 20px 30%;
+	float: right;
+}
+.mlist li {
+	font-size: 18px;
+	text-align: center;
+	list-style: none;
+	border: solid 1px #CCC;
+	margin-bottom: 10px;
+	padding: 10px 0;
+}
+.mlist li:hover,
+.mlist li:active {
+	background: #CCC;
+}
