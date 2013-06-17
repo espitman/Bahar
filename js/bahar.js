@@ -9,7 +9,6 @@ function localJsonpCallback(data) {
 }
 var URL = "http://baharnewspaper.com/app/index.php";
 $(document).on('pageinit', '#home', function() {
-	alert('pageinit');
 	$.ajax({
 		url : URL,
 		dataType : "jsonp",
