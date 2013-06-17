@@ -3,13 +3,16 @@ function localJsonpCallback(data) {
 		$("#ppp").append(data["data"][x]["category"]+"<br/>");
 	}
 }
-
+var URL = "http://baharnewspaper.com/app/index.php";
 $(document).on('pageinit', '#home', function() {
-
 	$.ajax({
-		type : "POST",
-		url : "http://baharnewspaper.com/app/index.php",
-		dataType : "jsonp"
+		url : URL,
+		dataType : "jsonp",
+		type : 'post',
+		processData : false,
+		crossDomain : true,
+		contentType : "application/json",
 	});
 
-});
+
+}); 
