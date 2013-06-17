@@ -2,6 +2,7 @@ var URL = "http://baharnewspaper.com/app/index.php";
 
 $(document).bind("mobileinit", function() {
 	$.mobile.allowCrossDomainPages = true;
+	navigator.network.isReachable("google.com", isNetworkAvailable);
 });
 
 //-----------------------------------------------------------
@@ -30,11 +31,15 @@ $(document).on('pageinit', '#home', function() {
 		contentType : "application/json",
 		dataType : 'jsonp'
 	});
-	
-	 var reader = new FileReader();
-	 reader.readAsText('file.txt');
 
-	
+	function isNetworkAvailable(status) {
+		if (status.internetConnectionStatus === NetworkStatus.NOT_REACHABLE) {
+			navigator.notification.alert("No internet connection - we won't be able to show you any maps", "PhoneGap Training", "Okay");
+		} else {
+			navigator.notification.alert("We can reach Google - get ready for some awesome maps!", "PhoneGap Training", "Huzzah!");
+		}
+	}
+
 });
 //-----------------------------------------------------------
 $(document).on("click", "#home ul li", function() {
@@ -56,9 +61,11 @@ $(document).on("click", "#home ul li", function() {
 
 function show_pages(data) {
 	for (var x in data["data"]) {
-		$("#pages-ul").append("<li>"+data["data"][x]["category"] + "</li>");
+		$("#pages-ul").append("<li>" + data["data"][x]["category"] + "</li>");
 	}
-	$.mobile.changePage("#pages", {transition: "slide"});
+	$.mobile.changePage("#pages", {
+		transition : "slide"
+	});
 	$.mobile.hidePageLoadingMsg();
 }
 
