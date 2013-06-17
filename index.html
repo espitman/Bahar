@@ -1,31 +1,53 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Device Properties Example</title>
+<!DOCTYPE html> 
+<html> 
+<head> 
+	<title>My Page</title>
+	<meta charset="utf-8"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="css/jquery.mobile-1.2.0.min.css" />
+	<link rel="stylesheet" href="themes/theme-gray.min.css" />	
+	<link rel="stylesheet" href="css/style.css" />	
 
-    <script src="phonegap.js"></script>
-    <script type="text/javascript" charset="utf-8">
+	<script src="phonegap.js"></script>
+	<script src="js/jquery-1.10.1.min.js"></script>
+	<script src="js/jquery.mobile-1.3.1.min.js"></script>
+	
+	<script src="js/bahar.js"></script>
+	
+</head> 
+<body> 
 
-    // Wait for Cordova to load
-    //
-    document.addEventListener("deviceready", onDeviceReady, false);
+<div data-role="page" id="home">
 
-    // Cordova is ready
-    //
-    function onDeviceReady() {
-        var element = document.getElementById('deviceProperties');
+	<div data-role="header">
+		<h1>Header</h1>
+	</div>
 
-        element.innerHTML = 'Device Name: '     + device.name     + '<br />' + 
-                            'Device Cordova: '  + device.cordova + '<br />' + 
-                            'Device Platform: ' + device.platform + '<br />' + 
-                            'Device UUID: '     + device.uuid     + '<br />' + 
-                            'Device Model: '    + device.model     + '<br />' + 
-                            'Device Version: '  + device.version  + '<br />';
-    }
+	<div data-role="content">
+		<h1>تاریخ مورد نظر را انتخاب کنید:</h1>
+		<ul class="mlist" id="profiles"></ul>
+	</div>
 
-    </script>
-  </head>
-  <body>
-    <p id="deviceProperties">Loading device properties...</p>
-  </body>
+	<div data-role="footer" data-position="fixed">
+		<h4>Page Footer</h4>
+	</div>
+</div>
+
+<div data-role="page" id="pages">
+
+	<div data-role="header">
+		<h1>Pages</h1>
+	</div>
+
+	<div data-role="content">
+		<ul class="mlist" id="pages-ul"></ul>
+	</div>
+
+	<div data-role="footer" data-position="fixed">
+		<h4>Page Footer</h4>
+	</div>
+</div>
+
+
+</body>
 </html>
