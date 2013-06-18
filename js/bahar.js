@@ -61,7 +61,7 @@ $(document).on("click", "#home ul li", function() {
 });
 
 function show_pages(data) {
-	var w = $(window).width();
+	var w = $(".ui-content").width();
 	
 	$("#pages #pages-ul").empty();
 	var i = 1;
@@ -83,12 +83,12 @@ function show_pages(data) {
 
 //-----------------------------------------------------------
 $(document).on("swipeleft", "#pages", function() {
-	var w = $(window).width();
+	var w = $("#pages #pages-ul li").width();
 	$("#pages #pages-ul").animate({"left":"-="+w});
 });
 
 
 $(document).on("swiperight", "#pages", function() {
-	var w = $(window).width();	
+	var w = $("#pages #pages-ul li").width();
 	$("#pages #pages-ul").animate({"left":"+="+w});
 });
