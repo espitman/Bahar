@@ -62,8 +62,11 @@ $(document).on("click", "#home ul li", function() {
 
 function show_pages(data) {
 	$("#pages #pages-ul").empty();
+	var i = 1;
 	for (var x in data["data"]) {
-		$("#pages #pages-ul").append("<li><img src='http://www.baharnewspaper.com/Pdfax/"+data["date"]+"/"+data["data"][x]["page"]+".jpg' /></li>");		
+		$("#pages #pages-ul").append("<li data-page='"+i+"'><img src='http://www.baharnewspaper.com/Pdfax/"+data["date"]+"/"+data["data"][x]["page"]+".jpg' /></li>");
+		$("#pages #pages-ul li:nth-child(1)").addClass("active");
+		i++;		
 	}
 	$("#pages #pages-ul").imageready(function () {
 		$.mobile.changePage("#pages", {transition: "slide"});
@@ -71,3 +74,18 @@ function show_pages(data) {
 	});
 }
 
+//-----------------------------------------------------------
+$(document).on("swipeleft", "#pages", function() {
+	var activePage = $("#pages #pages-ul li.active").attr("data-page");
+	var nextPage = parseInt(activePage)+1; 
+	$("#pages #pages-ul li.active").removeClass("active");
+	$("#pages #pages-ul li[data-page='"+nextPage+"']").addClass("active");
+});
+
+
+$(document).on("swiperight", "#pages", function() {
+	var activePage = $("#pages #pages-ul li.active").attr("data-page");
+	var nextPage = parseInt(activePage)-1; 
+	$("#pages #pages-ul li.active").removeClass("active");
+	$("#pages #pages-ul li[data-page='"+nextPage+"']").addClass("active");
+});
