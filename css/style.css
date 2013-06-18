@@ -6,6 +6,10 @@
 	text-align: center;
 	margin-bottom: 40px;
 }
+ul.mlist li {
+	text-align: right;
+	direction: rtl;
+}
 ul.mlist li:hover, ul.mlist li:active {
 	background: #CCCCCC;
 }
@@ -32,4 +36,8 @@ ul.mlist li:hover, ul.mlist li:active {
 #pages #pages-ul img {
 	width: 500px;
 	height: auto;
+}
+
+.ui-icon-t22 {
+	background-image: url("../themes/images/icons/22-skull-n-bones.png");
 }

@@ -21,7 +21,7 @@
 <div data-role="page" id="home">
 
 	<div data-role="header">
-		<h1>Header</h1>
+		<h1></h1>
 	</div>
 
 	<div data-role="content">
@@ -35,19 +35,40 @@
 </div>
 
 <div data-role="page" id="pages">
-
+	
 	<div data-role="header">
-		<h1>Pages</h1>
+		<button id="page_back" data-icon="arrow-l">قبلی</button>
+		<h1></h1>
+		<button id="page_forward" data-icon="arrow-r">بعدی</button>
 	</div>
 
 	<div data-role="content">
 		<ul id="pages-ul"></ul>
 	</div>
 
-	<div data-role="footer" data-position="fixed">
-		<h4>Page Footer</h4>
-	</div>
+	<div data-role="footer" style="text-align: center;">		
+		<button id="page_titles" data-icon="check">مشاهده عناوین</button>
+	</div><!-- /footer -->
+
+
 </div>
+
+<div data-role="page" id="news">
+	
+	<div data-role="header">
+		<h1>خبر</h1>
+	</div>
+
+	<div data-role="content">
+		<ul data-role="listview" class="mlist" id="titles"></ul>
+	</div>
+
+	<div data-role="footer" style="text-align: center;">		
+	</div><!-- /footer -->
+
+
+</div>
+
 
 
 </body>
