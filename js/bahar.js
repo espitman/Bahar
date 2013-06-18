@@ -71,8 +71,16 @@ function show_pages(data) {
 		i++;		
 	}
 	$("#pages #pages-ul").imageready(function () {
-		var pageCount = i-1;		
+		var pageCount = i-1;	
 		$("#pages #pages-ul li").css({"width":w+"px"});
+		var iw = parseInt($("#pages #pages-ul li img").width());
+		
+		alert(iw+','+w);
+		
+		if(iw > w) {
+			$("#pages #pages-ul li img").css({"width":(w)+"px"});
+		}
+		
 		$("#pages #pages-ul").css({"width":(w*pageCount)+"px","left":(w*(pageCount-1))+"px"});
 
 		
