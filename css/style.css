@@ -4,24 +4,24 @@
 #home h1 {
 	font-size: 18px;
 	text-align: center;
+	margin-bottom: 40px;
 }
-
-.mlist {
-	text-align: center;
+ul.mlist li:hover,
+ul.mlist li:active {
+	background: #CCCCCC;
+}
+#pages #pages-ul li {
 	list-style: none;
-	width: 40%;
-	margin: 20px 30%;
 	float: right;
+	width: 21%;
+	height: auto;
+	padding: 1%;
+	background: #FFF;
+	margin: 1%;
+	float: left;
 }
-.mlist li {
-	font-size: 18px;
-	text-align: center;
-	list-style: none;
-	border: solid 1px #CCC;
-	margin-bottom: 10px;
-	padding: 10px 0;
-}
-.mlist li:hover,
-.mlist li:active {
-	background: #CCC;
+#pages #pages-ul img {
+	width: 100%;
+	height: auto;
+	
 }

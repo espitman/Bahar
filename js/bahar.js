@@ -1,25 +1,8 @@
 var URL = "http://baharnewspaper.com/app/index.php";
 
-function checkConnection() {
-    var networkState = navigator.connection.type;
-
-    var states = {};
-    states[Connection.UNKNOWN]  = 'Unknown connection';
-    states[Connection.ETHERNET] = 'Ethernet connection';
-    states[Connection.WIFI]     = 'WiFi connection';
-    states[Connection.CELL_2G]  = 'Cell 2G connection';
-    states[Connection.CELL_3G]  = 'Cell 3G connection';
-    states[Connection.CELL_4G]  = 'Cell 4G connection';
-    states[Connection.CELL]     = 'Cell generic connection';
-    states[Connection.NONE]     = 'No network connection';
-
-    alert('Connection type: ' + states[networkState]);
-}
-
 
 $(document).bind("mobileinit", function() {
 	$.mobile.allowCrossDomainPages = true;
-	checkConnection();
 });
 
 
@@ -31,8 +14,11 @@ $(document).bind("mobileinit", function() {
 
 function first_page_callback(data) {
 	for (var x in data) {
-		$("#profiles").append("<li data-no='" + data[x]["fld_Profile_No"] + "'>" + data[x]["fld_Year"] + "/" + data[x]["fld_Month"] + "/" + data[x]["fld_Day"] + "</li>");
+		data[x]["fld_Year"] = parseInt(data[x]["fld_Year"])-1300;
+		var date = data[x]["fld_Year"]+"/"+data[x]["fld_Month"]+"/"+data[x]["fld_Day"];
+		$("#profiles").append("<li style='text-align:center;' data-date='"+date+"' data-prfNo='" + data[x]["fld_Profile_No"] + "'>" + data[x]["fld_Year"] + "/" + data[x]["fld_Month"] + "/" + data[x]["fld_Day"] + "</li>");
 	}
+	$("#home ul.mlist").listview("refresh");	
 	$.mobile.hidePageLoadingMsg();
 }
 
@@ -56,12 +42,14 @@ $(document).on('pageinit', '#home', function() {
 });
 //-----------------------------------------------------------
 $(document).on("click", "#home ul li", function() {
+	var prfNo = $(this).attr("data-prfNo");
 	$.mobile.showPageLoadingMsg();
 	var url = URL;
 	$.ajax({
 		type : 'GET',
 		data : {
 			f : "pages_page",
+			prfNo : prfNo,
 			callback : 'show_pages'
 		},
 		url : url,
@@ -73,8 +61,10 @@ $(document).on("click", "#home ul li", function() {
 });
 
 function show_pages(data) {
+	console.log(data);
+	$("#pages #pages-ul").empty();
 	for (var x in data["data"]) {
-		$("#pages-ul").append("<li>"+data["data"][x]["category"] + "</li>");
+		$("#pages #pages-ul").append("<li><img src='http://www.baharnewspaper.com/Pdfax/"+data["date"]+"/"+data["data"][x]["page"]+".jpg' /></li>")		
 	}
 	$.mobile.changePage("#pages", {transition: "slide"});
 	$.mobile.hidePageLoadingMsg();
