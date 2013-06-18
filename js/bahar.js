@@ -61,6 +61,8 @@ $(document).on("click", "#home ul li", function() {
 });
 
 function show_pages(data) {
+	var w = $(window).width();
+	
 	$("#pages #pages-ul").empty();
 	var i = 1;
 	for (var x in data["data"]) {
@@ -69,6 +71,11 @@ function show_pages(data) {
 		i++;		
 	}
 	$("#pages #pages-ul").imageready(function () {
+		var pageCount = i-1;		
+		$("#pages #pages-ul li").css({"width":w+"px"});
+		$("#pages #pages-ul").css({"width":(w*pageCount)+"px","left":(w*(pageCount-1))+"px"});
+
+		
 		$.mobile.changePage("#pages", {transition: "slide"});
 		$.mobile.hidePageLoadingMsg();
 	});
@@ -76,16 +83,10 @@ function show_pages(data) {
 
 //-----------------------------------------------------------
 $(document).on("swipeleft", "#pages", function() {
-	var activePage = $("#pages #pages-ul li.active").attr("data-page");
-	var nextPage = parseInt(activePage)+1; 
-	$("#pages #pages-ul li.active").removeClass("active");
-	$("#pages #pages-ul li[data-page='"+nextPage+"']").addClass("active");
+	$("#pages #pages-ul").animate({"left":"-=1600"});
 });
 
 
 $(document).on("swiperight", "#pages", function() {
-	var activePage = $("#pages #pages-ul li.active").attr("data-page");
-	var nextPage = parseInt(activePage)-1; 
-	$("#pages #pages-ul li.active").removeClass("active");
-	$("#pages #pages-ul li[data-page='"+nextPage+"']").addClass("active");
+	$("#pages #pages-ul").animate({"left":"+=1600"});
 });

@@ -12,15 +12,18 @@ ul.mlist li:hover, ul.mlist li:active {
 #pages #pages-ul {
 	margin: 0;
 	padding: 0;
+	position: relative;
+	left: 0;
 }
 #pages #pages-ul li {
-	list-style: none;
 	width: 100%;
 	height: auto;
 	background: #FFF;
 	text-align: center;
 	float: left;
-	display: none;
+	padding: 0;
+	margin: 0;
+	list-style: none;
 }
 #pages #pages-ul li.active {
 	display: block;
