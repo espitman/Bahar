@@ -75,10 +75,8 @@ function show_pages(data) {
 		$("#pages #pages-ul li").css({"width":w+"px"});
 		var iw = parseInt($("#pages #pages-ul li img").width());
 		
-		alert(iw+','+w);
-		
 		if(iw > w) {
-			$("#pages #pages-ul li img").css({"width":(w)+"px"});
+			$("#pages #pages-ul li img").css({"width":(w-30)+"px"});
 		}
 		
 		$("#pages #pages-ul").css({"width":(w*pageCount)+"px","left":(w*(pageCount-1))+"px"});
