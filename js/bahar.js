@@ -61,12 +61,13 @@ $(document).on("click", "#home ul li", function() {
 });
 
 function show_pages(data) {
-	console.log(data);
 	$("#pages #pages-ul").empty();
 	for (var x in data["data"]) {
-		$("#pages #pages-ul").append("<li><img src='http://www.baharnewspaper.com/Pdfax/"+data["date"]+"/"+data["data"][x]["page"]+".jpg' /></li>")		
+		$("#pages #pages-ul").append("<li><img src='http://www.baharnewspaper.com/Pdfax/"+data["date"]+"/"+data["data"][x]["page"]+".jpg' /></li>");		
 	}
-	$.mobile.changePage("#pages", {transition: "slide"});
-	$.mobile.hidePageLoadingMsg();
+	$("#pages #pages-ul").imageready(function () {
+		$.mobile.changePage("#pages", {transition: "slide"});
+		$.mobile.hidePageLoadingMsg();
+	});
 }
 
