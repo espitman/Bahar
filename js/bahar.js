@@ -90,5 +90,5 @@ $(document).on("swipeleft", "#pages", function() {
 
 $(document).on("swiperight", "#pages", function() {
 	var w = $(window).width();	
-	$("#pages #pages-ul").animate({"left":"+="w});
+	$("#pages #pages-ul").animate({"left":"+="+w});
 });
