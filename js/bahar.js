@@ -83,10 +83,12 @@ function show_pages(data) {
 
 //-----------------------------------------------------------
 $(document).on("swipeleft", "#pages", function() {
-	$("#pages #pages-ul").animate({"left":"-=1600"});
+	var w = $(window).width();
+	$("#pages #pages-ul").animate({"left":"-="+w});
 });
 
 
 $(document).on("swiperight", "#pages", function() {
-	$("#pages #pages-ul").animate({"left":"+=1600"});
+	var w = $(window).width();	
+	$("#pages #pages-ul").animate({"left":"+="w});
 });
