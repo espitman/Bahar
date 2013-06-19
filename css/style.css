@@ -48,3 +48,12 @@ ul.mlist li:hover, ul.mlist li:active {
 #anews-content p {
 	text-align: justify !important;
 }
+#anews-content h1 {
+	font-size: 18px;
+}
+#anews-content h2 {
+	font-size: 15px;
+}
+#anews-content h3 {
+	font-size: 12px;
+}

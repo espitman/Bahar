@@ -189,7 +189,9 @@ function show_news(data) {
 	
 	$("#anews #anews-content").append("<h2>"+data["fld_News_Top_Title"]+"</h2>");
 	$("#anews #anews-content").append("<h1>"+data["fld_News_Title"]+"</h1>");
-	$("#anews #anews-content").append("<h3 style='text-align:center;'>"+data["fld_News_Author_Name"]+"</h3>");
+	if(data["fld_News_Author_Name"]) {
+		$("#anews #anews-content").append("<h3'>"+data["fld_News_Author_Name"]+"</h3>");
+	}
 	$("#anews #anews-content").append(data["fld_News_Lead"]);
 	$("#anews #anews-content").append(data["fld_News_Body"]);
 	$.mobile.changePage("#anews", {
