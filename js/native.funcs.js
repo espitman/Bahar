@@ -4,7 +4,6 @@ function onBodyLoad()
 }
  
     function downloadFile(){
-    	alert('downloadFile');
         window.requestFileSystem(
                      LocalFileSystem.PERSISTENT, 0, 
                      function onFileSystemSuccess(fileSystem) {
