@@ -10,12 +10,9 @@ function createFolder(name) {
 	}, fail);
 }
 
-function downloadFile() {
+function downloadFile(folder,file,name) {
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function onFileSystemSuccess(fileSystem) {
 		
-		var folder = "Bahar/4/";
-		createFolder(folder);
-
 		fileSystem.root.getFile(folder+"dummy.html", {
 			create : true,
 			exclusive : false
@@ -24,7 +21,7 @@ function downloadFile() {
 			var fileTransfer = new FileTransfer();
 			fileEntry.remove();
 
-			fileTransfer.download("http://www.baharnewspaper.com/Images/Logo/bahar.jpg", sPath + "bahar.jpg", function(theFile) {
+			fileTransfer.download(file, sPath + name, function(theFile) {
 				alert(">>" + theFile.toURI());
 			}, function(error) {
 				alert("download error source " + error.source);

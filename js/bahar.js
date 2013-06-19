@@ -84,6 +84,10 @@ function show_pages(data) {
 		$("#pages #pages-ul li:nth-child(1)").addClass("active");
 		i++;
 	}
+	
+	function saeed() {
+		
+	}
 
 	$("#pages #pages-ul").imageready(function() {
 		var pageCount = i - 1;
@@ -107,6 +111,11 @@ function show_pages(data) {
 			transition : "slide"
 		});
 		$.mobile.hidePageLoadingMsg();
+		
+		//-----------
+		createFolder(prfNo);
+		downloadFile(prfNo,"http://baharnewspaper.com/app/index.php?f=profile_all_news&prfNo="+prfNo+"&callback=saeed",prfNo+".json");
+		//-----------
 	});
 	setPageTitle(0);
 }
