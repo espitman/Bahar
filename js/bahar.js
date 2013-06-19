@@ -72,16 +72,8 @@ $(document).on("click", "#home ul li", function() {
 	});
 	*/
 	
-	var reader = new FileReader();
 	var fileSource = "Bahar/"+prfNo+"/news.json";
-	reader.onloadend = function(evt) {
-	
-	    if(evt.target.result == null) {
-	       alert('File Not exist');
-	    } else {
-	    	alert('Yes!');
-	    }         
-	};
+	doReadFile(fileSource);
 	
 	
 

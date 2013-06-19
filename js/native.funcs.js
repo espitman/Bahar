@@ -10,10 +10,10 @@ function createFolder(name) {
 	}, fail);
 }
 
-function downloadFile(folder,file,name) {
+function downloadFile(folder, file, name) {
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function onFileSystemSuccess(fileSystem) {
-		
-		fileSystem.root.getFile(folder+"dummy.html", {
+
+		fileSystem.root.getFile(folder + "dummy.html", {
 			create : true,
 			exclusive : false
 		}, function gotFileEntry(fileEntry) {
@@ -37,3 +37,21 @@ function fail(evt) {
 	console.log(evt.target.error.code);
 }
 
+//===============================================================================================
+
+function readFile(f) {
+	reader = new FileReader();
+	reader.onloadend = function(e) {
+	}
+	var c = reader.readAsText(f);
+	alert(c);
+	
+}
+
+function doReadFile(file) {
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function onFileSystemSuccess(fileSystem) {
+		fileSystem.root.getFile(file, {
+			create : true
+		}, readFile);
+	}, fail);
+}
