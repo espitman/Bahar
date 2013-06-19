@@ -4,24 +4,10 @@ var iNav = new navigation();
 $(document).on('pageshow', 'div[data-role="page"]', function() {
 	var currentPage = ($(this).attr("id"));
 	iNav.push(currentPage);
-	
-	kooft();	
+	downloadFile();
 	
 });
 
-function kooft() {
-	var reader = new FileReader();
-	var txt = reader.readAsText('test.db') 
-	if(txt) {
-		alert('A');
-	} else {
-		alert('B');
-		var writer = new FileWriter("test.db");
-		writer.write("some sample text");
-    	alert('C');              
-	}
-
-}
 
 
 $(document).on('click', '#button_back', function() {
