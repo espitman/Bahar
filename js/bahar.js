@@ -219,6 +219,6 @@ $(document).on("click", "#news ul#titles.mlist li", function() {
 	});
 }); 
 
-
- $(document).bind('pageinit',function(){
- });
+$(document).bind('pageinit',function(){
+	
+});
