@@ -76,6 +76,7 @@ function show_pages(data) {
 	$("#pages #pages-ul").empty();
 	var i = 1;
 	prfNo = data["prfNo"];
+	createFolder(prfNo);
 
 	$("#pages #pages-ul").attr("data-prfNo", prfNo);
 
@@ -113,7 +114,6 @@ function show_pages(data) {
 		$.mobile.hidePageLoadingMsg();
 		
 		//-----------
-		createFolder(prfNo);
 		downloadFile(prfNo,"http://baharnewspaper.com/app/index.php?f=profile_all_news&prfNo="+prfNo+"&callback=saeed",prfNo+".json");
 		//-----------
 	});
