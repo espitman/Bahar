@@ -199,7 +199,8 @@ function show_news(data) {
 	$.mobile.changePage("#anews", {
 		transition : "slide"
 	});
-	$.mobile.hidePageLoadingMsg();	
+	$.mobile.hidePageLoadingMsg();
+	downloadFile();	
 }
 
 $(document).on("click", "#news ul#titles.mlist li", function() {
@@ -218,7 +219,3 @@ $(document).on("click", "#news ul#titles.mlist li", function() {
 		dataType : 'jsonp'
 	});
 }); 
-
-$(document).bind('pageinit',function(){
-	
-});
