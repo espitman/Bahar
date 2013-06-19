@@ -5,10 +5,24 @@ $(document).on('pageshow', 'div[data-role="page"]', function() {
 	var currentPage = ($(this).attr("id"));
 	iNav.push(currentPage);
 	
-	var reader = new FileReader();
-	alert(reader.readAsText('test.db'));
+	kooft();	
 	
 });
+
+function kooft() {
+	var reader = new FileReader();
+	var txt = reader.readAsText('test.db') 
+	if(txt) {
+		alert('A');
+	} else {
+		alert('B');
+		var writer = new FileWriter("test.db");
+    	writer.write("saeed heidari" + "\n", false);
+    	alert('C');              
+	}
+
+}
+
 
 $(document).on('click', '#button_back', function() {
 	$.mobile.changePage("#"+iNav.pop(), {
