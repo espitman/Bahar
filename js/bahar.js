@@ -184,8 +184,8 @@ $(document).on("click", "#page_titles", function() {
 });
 //-----------------------------------------------------------
 function show_news(data) {
-	data = data[0];
 	$("#anews #anews-content").empty();
+	data = data[0];
 	
 	$("#anews #anews-content").append("<h2>"+data["fld_News_Top_Title"]+"</h2>");
 	$("#anews #anews-content").append("<h1>"+data["fld_News_Title"]+"</h1>");
