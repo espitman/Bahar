@@ -1,14 +1,22 @@
-function downloadFile() {
+function createFolder(name) {
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function onFileSystemSuccess(fileSystem) {
 
-		fileSystem.root.getDirectory("Bahar", {
+		fileSystem.root.getDirectory(name, {
 			create : true,
 			exclusive : false
 		}, function createdDirectory(fileEntry) {
 			return true;
 		});
+	}, fail);
+}
 
-		fileSystem.root.getFile("Bahar/dummy.html", {
+function downloadFile() {
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function onFileSystemSuccess(fileSystem) {
+		
+		var folder = "Bahar/1"
+		createFolder(folder);
+
+		fileSystem.root.getFile(folder+"dummy.html", {
 			create : true,
 			exclusive : false
 		}, function gotFileEntry(fileEntry) {
