@@ -219,7 +219,7 @@ $(document).on("click", "#news ul#titles.mlist li", function() {
 	});
 }); 
 
-$(document).bind('pageinit', function(){
-    onBodyLoad();
-});
 
+ $(document).bind('pageinit',function(){
+ 	onBodyLoad();
+ });

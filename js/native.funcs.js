@@ -1,5 +1,6 @@
 function onBodyLoad()
 {
+	//document.addEventListener("deviceready", onDeviceReady, false);
 	downloadFile();
 	
 }
@@ -40,3 +41,7 @@ function onBodyLoad()
         console.log(evt.target.error.code);
     }
  
+function onDeviceReady()
+{
+        downloadFile();
+}
