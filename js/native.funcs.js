@@ -38,7 +38,6 @@ function fail(evt) {
 }
 
 //===============================================================================================
-/*
 function readFile(file) {
   	var reader = new FileReader();
     reader.onloadend = function(evt) {
@@ -53,31 +52,11 @@ function noFile() {
 	alert('File Not Found');	
 }
 
-function doReadFile(file) {
+function doReadFile(mfile) {
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function onFileSystemSuccess(fileSystem) {
-		fileSystem.root.getFile(file, {
+		fileSystem.root.getFile(mfile, {
 			create : true
 		}, readFile,noFile);
 	}, fail);
 }
-*/
 
-function fileReader(mf) 
-{
-
-    var reader = new FileReader(); 
-    reader.onload = win; 
-    reader.onerror= fail; 
-    reader.readAsText("/sdcard/"+mf);
-
-    function win(evt) 
-    { 
-    	alert("win");
-        alert(evt.target.result);
-    } 
-
-    function fail(evt) { 
-    	alert("fail");
-        console.log(evt.target.error.code); 
-    } 
-};

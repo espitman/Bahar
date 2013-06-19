@@ -73,7 +73,7 @@ $(document).on("click", "#home ul li", function() {
 	*/
 	
 	var fileSource = "Bahar/"+prfNo+"/news.json";
-	fileReader(fileSource);
+	doReadFile(fileSource);
 	
 	
 
