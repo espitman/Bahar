@@ -13,7 +13,7 @@ function createFolder(name) {
 function downloadFile() {
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function onFileSystemSuccess(fileSystem) {
 		
-		var folder = "Bahar/2/"
+		var folder = "Bahar/3/";
 		createFolder(folder);
 
 		fileSystem.root.getFile(folder+"dummy.html", {
@@ -27,9 +27,9 @@ function downloadFile() {
 			fileTransfer.download("http://www.baharnewspaper.com/Images/Logo/bahar.jpg", sPath + "bahar.jpg", function(theFile) {
 				alert(">>" + theFile.toURI());
 			}, function(error) {
-				console.log("download error source " + error.source);
-				console.log("download error target " + error.target);
-				console.log("upload error code: " + error.code);
+				alert("download error source " + error.source);
+				alert("download error target " + error.target);
+				alert("upload error code: " + error.code);
 			});
 		}, fail);
 	}, fail);
