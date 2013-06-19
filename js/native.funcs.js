@@ -20,3 +20,7 @@ function downloadFile() {
 
 }
 
+function fail(evt) {
+	console.log(evt.target.error.code);
+}
+
