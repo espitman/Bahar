@@ -78,7 +78,6 @@ function show_pages(data) {
 	prfNo = data["prfNo"];
 	var bFolder = "Bahar/"+prfNo;
 	createFolder(bFolder);
-	var bFile = bFolder+"/news.json"; 
 
 	$("#pages #pages-ul").attr("data-prfNo", prfNo);
 
@@ -116,7 +115,7 @@ function show_pages(data) {
 		$.mobile.hidePageLoadingMsg();
 		
 		//-----------
-		downloadFile(prfNo,"http://baharnewspaper.com/app/index.php?f=profile_all_news&prfNo="+prfNo+"&callback=saeed",bFile);
+		downloadFile(bFolder+"/","http://baharnewspaper.com/app/index.php?f=profile_all_news&prfNo="+prfNo+"&callback=saeed","news.json");
 		//-----------
 	});
 	setPageTitle(0);
