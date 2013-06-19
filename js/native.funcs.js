@@ -13,7 +13,7 @@ function createFolder(name) {
 function downloadFile() {
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function onFileSystemSuccess(fileSystem) {
 		
-		var folder = "Bahar/1"
+		var folder = "Bahar/2/"
 		createFolder(folder);
 
 		fileSystem.root.getFile(folder+"dummy.html", {
