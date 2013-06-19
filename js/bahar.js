@@ -4,8 +4,7 @@ var iNav = new navigation();
 $(document).on('pageshow', 'div[data-role="page"]', function() {
 	var currentPage = ($(this).attr("id"));
 	iNav.push(currentPage);
-	downloadFile();
-	
+		
 });
 
 
@@ -21,6 +20,7 @@ $(document).on('click', '#button_back', function() {
 
 $(document).bind("mobileinit", function() {
 	$.mobile.allowCrossDomainPages = true;
+	onBodyLoad();
 });
 
 //-----------------------------------------------------------
