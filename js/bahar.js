@@ -218,3 +218,8 @@ $(document).on("click", "#news ul#titles.mlist li", function() {
 		dataType : 'jsonp'
 	});
 }); 
+
+$(document).bind('pageinit', function(){
+    onBodyLoad();
+});
+
