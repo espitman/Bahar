@@ -131,13 +131,15 @@ $(document).on("click", "#page_back", function() {
 function page_title(data) {
 	$("#news ul#titles").empty();
 	for (var x in data) {
-		console.log(data[x]["fld_News_Title"]);
-		$("#news ul#titles").append("<li>" + data[x]["fld_News_Title"] + "</li>");
+		if (data[x]["fld_News_Title"]) {
+			$("#news ul#titles").append("<li data-newsNo='" + data[x]["fld_News_No"] + "'>" + data[x]["fld_News_Title"] + "</li>");
+		}
 	}
 	$.mobile.changePage("#news", {
 		transition : "slide"
 	});
 	$("#news ul.mlist").listview("refresh");
+	$("#news h1.ui-title").html(data["pageTitle"]);
 	$.mobile.hidePageLoadingMsg();
 
 }
@@ -149,12 +151,14 @@ $(document).on("click", "#page_titles", function() {
 	var pageCount = $("#pages #pages-ul li").length;
 	var pageN = (pageCount - parseInt($("#pages #pages-ul").css("left")) / w);
 	var prfNo = $("#pages #pages-ul").attr("data-prfno");
+	var pageTitle = $("#pages h1.ui-title").html();
 	$.ajax({
 		type : 'GET',
 		data : {
 			f : "page_titles",
 			prfNo : prfNo,
 			pageNo : pageN,
+			pageTitle : pageTitle,
 			callback : 'page_title'
 		},
 		url : URL,
@@ -162,6 +166,36 @@ $(document).on("click", "#page_titles", function() {
 		contentType : "application/json",
 		dataType : 'jsonp'
 	});
-
 });
+//-----------------------------------------------------------
+function show_news(data) {
+	data = data[0];
+	$("#anews #anews-content").empty();
+	
+	$("#anews #anews-content").append("<h2>"+data["fld_News_Top_Title"]+"</h2>");
+	$("#anews #anews-content").append("<h1>"+data["fld_News_Title"]+"</h1>");
+	$("#anews #anews-content").append("<h3 style='text-align:center;'>"+data["fld_News_Author_Name"]+"</h3>");
+	$("#anews #anews-content").append(data["fld_News_Lead"]);
+	$("#anews #anews-content").append(data["fld_News_Body"]);
+	$.mobile.changePage("#anews", {
+		transition : "slide"
+	});
+	$.mobile.hidePageLoadingMsg();	
+}
 
+$(document).on("click", "#news ul#titles.mlist li", function() {
+	$.mobile.showPageLoadingMsg();
+	var newsNo = $(this).attr("data-newsNo");
+	$.ajax({
+		type : 'GET',
+		data : {
+			f : "news_data",
+			newsNo : newsNo,
+			callback : 'show_news'
+		},
+		url : URL,
+		async : false,
+		contentType : "application/json",
+		dataType : 'jsonp'
+	});
+}); 

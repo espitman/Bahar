@@ -1,6 +1,9 @@
 * {
 	direction: rtl;
 }
+p {
+	text-align: justify;
+}
 #home h1 {
 	font-size: 18px;
 	text-align: center;
@@ -40,4 +43,8 @@ ul.mlist li:hover, ul.mlist li:active {
 
 .ui-icon-t22 {
 	background-image: url("../themes/images/icons/22-skull-n-bones.png");
+}
+#anews-content,
+#anews-content p {
+	text-align: justify !important;
 }
