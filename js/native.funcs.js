@@ -5,14 +5,14 @@ function downloadFile() {
 			create : true,
 			exclusive : false
 		}, function createdDirectory(fileEntry) {
-			alert('createdDirectory');
+			return true;
 		});
 
-		fileSystem.root.getFile("dummy.html", {
+		fileSystem.root.getFile("Bahar/dummy.html", {
 			create : true,
 			exclusive : false
 		}, function gotFileEntry(fileEntry) {
-			var sPath = fileEntry.fullPath.replace("dummy.html", "");
+			var sPath = fileEntry.fullPath.replace("Bahar/dummy.html", "");
 			var fileTransfer = new FileTransfer();
 			fileEntry.remove();
 
