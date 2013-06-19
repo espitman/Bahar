@@ -19,7 +19,7 @@ function onBodyLoad()
                                            "http://www.baharnewspaper.com/Images/Logo/bahar.jpg",
                                            sPath + "bahar.jpg",
                                            function(theFile) {
-                                           alert(">>"+url);
+                                           alert(">>"+theFile.toURI());
                                            },
                                            function(error) {
                                            console.log("download error source " + error.source);
