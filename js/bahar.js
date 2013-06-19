@@ -17,7 +17,7 @@ function kooft() {
 	} else {
 		alert('B');
 		var writer = new FileWriter("test.db");
-    	writer.write("saeed heidari" + "\n", false);
+		writer.write("some sample text");
     	alert('C');              
 	}
 
