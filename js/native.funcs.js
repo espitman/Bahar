@@ -4,6 +4,7 @@ function onBodyLoad()
 }
  
     function downloadFile(){
+    	alert('downloadFile');
         window.requestFileSystem(
                      LocalFileSystem.PERSISTENT, 0, 
                      function onFileSystemSuccess(fileSystem) {
@@ -15,11 +16,10 @@ function onBodyLoad()
                                  fileEntry.remove();
  
                                  fileTransfer.download(
-                                           "http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf",
-                                           sPath + "theFile.pdf",
+                                           "http://www.baharnewspaper.com/Images/Logo/bahar.jpg",
+                                           sPath + "bahar.jpg",
                                            function(theFile) {
-                                           console.log("download complete: " + theFile.toURI());
-                                           showLink(theFile.toURI());
+                                           alert(">>"+url);
                                            },
                                            function(error) {
                                            console.log("download error source " + error.source);
@@ -34,16 +34,6 @@ function onBodyLoad()
  
     }
  
-    function showLink(url){
-        alert(url);
-        var divEl = document.getElementById("ready");
-        var aElem = document.createElement("a");
-        aElem.setAttribute("target", "_blank");
-        aElem.setAttribute("href", url);
-        aElem.appendChild(document.createTextNode("Ready! Click To Open."))
-        divEl.appendChild(aElem);
- 
-    }
  
  
     function fail(evt) {
