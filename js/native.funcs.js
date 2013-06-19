@@ -12,7 +12,7 @@ function downloadFile() {
 			create : true,
 			exclusive : false
 		}, function gotFileEntry(fileEntry) {
-			var sPath = fileEntry.fullPath.replace("Bahar/dummy.html", "");
+			var sPath = fileEntry.fullPath.replace("dummy.html", "");
 			var fileTransfer = new FileTransfer();
 			fileEntry.remove();
 
