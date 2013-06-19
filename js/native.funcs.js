@@ -39,12 +39,13 @@ function fail(evt) {
 
 //===============================================================================================
 
-function readFile(f) {
-	reader = new FileReader();
-	reader.onloadend = function(e) {
-		 alert(e.target.result);
-	}
-	reader.readAsText(f);
+function readFile(file) {
+  	var reader = new FileReader();
+    reader.onloadend = function(evt) {
+        alert("read success");
+        alert(evt.target.result);
+    };
+    reader.readAsText(file);
 	
 	
 }
