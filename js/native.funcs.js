@@ -1,22 +1,80 @@
-function downloadFile() {
-	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function onFileSystemSuccess(fileSystem) {
-		fileSystem.root.getFile("dummy.html", {
-			create : true,
-			exclusive : false
-		}, function gotFileEntry(fileEntry) {
-			var sPath = fileEntry.fullPath.replace("dummy.html", "");
-			var fileTransfer = new FileTransfer();
-			fileEntry.remove();
-
-			fileTransfer.download("http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf", sPath + "theFile2.pdf", function(theFile) {
-				console.log("download complete: " + theFile.toURI());
-				showLink(theFile.toURI());
-			}, function(error) {
-				console.log("download error source " + error.source);
-				console.log("download error target " + error.target);
-				console.log("upload error code: " + error.code);
-			});
-		}, fail);
-	}, fail);
-
+// If you want to prevent dragging, uncomment this section
+/*
+function preventBehavior(e) 
+{ 
+      e.preventDefault(); 
+    };
+document.addEventListener("touchmove", preventBehavior, false);
+*/
+ 
+/* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
+see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
+for more details -jm */
+/*
+function handleOpenURL(url)
+{
+// TODO: do something with the url passed in.
+}
+*/
+ 
+function onBodyLoad()
+{
+document.addEventListener("deviceready", onDeviceReady, false);
+}
+ 
+    function downloadFile(){
+        window.requestFileSystem(
+                     LocalFileSystem.PERSISTENT, 0, 
+                     function onFileSystemSuccess(fileSystem) {
+                     fileSystem.root.getFile(
+                                 "dummy.html", {create: true, exclusive: false}, 
+                                 function gotFileEntry(fileEntry){
+                                 var sPath = fileEntry.fullPath.replace("dummy.html","");
+                                 var fileTransfer = new FileTransfer();
+                                 fileEntry.remove();
+ 
+                                 fileTransfer.download(
+                                           "http://www.w3.org/2011/web-apps-ws/papers/Nitobi.pdf",
+                                           sPath + "theFile.pdf",
+                                           function(theFile) {
+                                           console.log("download complete: " + theFile.toURI());
+                                           showLink(theFile.toURI());
+                                           },
+                                           function(error) {
+                                           console.log("download error source " + error.source);
+                                           console.log("download error target " + error.target);
+                                           console.log("upload error code: " + error.code);
+                                           }
+                                           );
+                                 }, 
+                                 fail);
+                     }, 
+                     fail);
+ 
+    }
+ 
+    function showLink(url){
+        alert(url);
+        var divEl = document.getElementById("ready");
+        var aElem = document.createElement("a");
+        aElem.setAttribute("target", "_blank");
+        aElem.setAttribute("href", url);
+        aElem.appendChild(document.createTextNode("Ready! Click To Open."))
+        divEl.appendChild(aElem);
+ 
+    }
+ 
+ 
+    function fail(evt) {
+        console.log(evt.target.error.code);
+    }
+ 
+/* When this function is called, PhoneGap has been initialized and is ready to roll */
+/* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
+see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
+for more details -jm */
+function onDeviceReady()
+{
+// do your thing!
+        downloadFile();
 }
