@@ -57,7 +57,6 @@ $(document).on("click", "#home ul li", function() {
 	$.mobile.showPageLoadingMsg();
 	var url = URL;
 	
-	/*
 	$.ajax({
 		type : 'GET',
 		data : {
@@ -70,11 +69,11 @@ $(document).on("click", "#home ul li", function() {
 		contentType : "application/json",
 		dataType : 'jsonp'
 	});
-	*/
 	
+	/*
 	var fileSource = "Bahar/"+prfNo+"/news.json";
-	doReadFile(fileSource);
-	
+	fileReader(fileSource);
+	*/
 	
 
 });
