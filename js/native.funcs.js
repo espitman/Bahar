@@ -42,16 +42,20 @@ function fail(evt) {
 function readFile(f) {
 	reader = new FileReader();
 	reader.onloadend = function(e) {
+		 alert(e.target.result);
 	}
-	var c = reader.readAsText(f);
-	alert(c);
+	reader.readAsText(f);
 	
+	
+}
+function noFile() {
+	alert('File Not Found');	
 }
 
 function doReadFile(file) {
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function onFileSystemSuccess(fileSystem) {
 		fileSystem.root.getFile(file, {
 			create : true
-		}, readFile);
+		}, readFile,noFile);
 	}, fail);
 }
