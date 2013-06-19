@@ -4,6 +4,10 @@ var iNav = new navigation();
 $(document).on('pageshow', 'div[data-role="page"]', function() {
 	var currentPage = ($(this).attr("id"));
 	iNav.push(currentPage);
+	
+	var reader = new FileReader();
+	alert(reader.readAsText('test.db'));
+	
 });
 
 $(document).on('click', '#button_back', function() {
