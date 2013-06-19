@@ -56,6 +56,8 @@ $(document).on("click", "#home ul li", function() {
 	var prfNo = $(this).attr("data-prfNo");
 	$.mobile.showPageLoadingMsg();
 	var url = URL;
+	
+	/*
 	$.ajax({
 		type : 'GET',
 		data : {
@@ -68,6 +70,20 @@ $(document).on("click", "#home ul li", function() {
 		contentType : "application/json",
 		dataType : 'jsonp'
 	});
+	*/
+	
+	var reader = new FileReader();
+	var fileSource = "Bahar/"+prfNo+"/news.json";
+	reader.onloadend = function(evt) {
+	
+	    if(evt.target.result == null) {
+	       alert('File Not exist');
+	    } else {
+	    	alert('Yes!');
+	    }         
+	};
+	
+	
 
 });
 
@@ -87,10 +103,6 @@ function show_pages(data) {
 		i++;
 	}
 	
-	function saeed() {
-		
-	}
-
 	$("#pages #pages-ul").imageready(function() {
 		var pageCount = i - 1;
 		$("#pages #pages-ul li").css({
