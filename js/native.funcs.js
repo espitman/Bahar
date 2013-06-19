@@ -1,5 +1,13 @@
 function downloadFile() {
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function onFileSystemSuccess(fileSystem) {
+
+		fileSystem.root.getDirectory("Bahar", {
+			create : true,
+			exclusive : false
+		}, function createdDirectory(fileEntry) {
+			alert('createdDirectory');
+		});
+
 		fileSystem.root.getFile("dummy.html", {
 			create : true,
 			exclusive : false
