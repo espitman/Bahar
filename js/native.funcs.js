@@ -79,8 +79,8 @@ function queryDB(tx) {
 function querySuccess(tx, results) {
 	var len = results.rows.length;
 	alert("DEMO table: " + len + " rows found.");
-	for (var x in results.rows.item) {
-		alert("Row = " + i + " ID = " + results.rows.item[x]["id"] + " Data =  " + results.rows.item[x]["data"]);
+	for (var i = 0; i < len; i++) {
+		alert("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
 	}
 }
 
