@@ -35,6 +35,9 @@ function first_page_callback(data) {
 
 
 $(document).on('pageinit', '#home', function() {
+	
+	testDB();
+	
 	var url = URL;
 	$.ajax({
 		type : 'GET',
@@ -70,10 +73,6 @@ $(document).on("click", "#home ul li", function() {
 		dataType : 'jsonp'
 	});
 	
-	/*
-	var fileSource = "Bahar/"+prfNo+"/news.json";
-	fileReader(fileSource);
-	*/
 	
 
 });
@@ -84,7 +83,6 @@ function show_pages(data) {
 	var i = 1;
 	prfNo = data["prfNo"];
 	var bFolder = "Bahar/"+prfNo;
-	createFolder(bFolder);
 
 	$("#pages #pages-ul").attr("data-prfNo", prfNo);
 
@@ -116,10 +114,6 @@ function show_pages(data) {
 			transition : "slide"
 		});
 		$.mobile.hidePageLoadingMsg();
-		
-		//-----------
-		downloadFile(bFolder+"/","http://baharnewspaper.com/app/index.php?f=profile_all_news&prfNo="+prfNo+"&callback=saeed","news.json");
-		//-----------
 	});
 	setPageTitle(0);
 }
