@@ -56,6 +56,7 @@ $(document).on('pageinit', '#home', function() {
 });
 //-----------------------------------------------------------
 $(document).on("click", "#home ul li", function() {
+	successCB();
 	var prfNo = $(this).attr("data-prfNo");
 	$.mobile.showPageLoadingMsg();
 	var url = URL;
