@@ -77,20 +77,17 @@ function queryDB(tx) {
 // Query the success callback
 //
 function querySuccess(tx, results) {
-	alert("Returned rows = " + results.rows.length);
-	// this will be true since it was a select statement and so rowsAffected was 0
-	if (!results.rowsAffected) {
-		alert('No rows affected!');
-		return false;
+	var len = results.rows.length;
+	alert("DEMO table: " + len + " rows found.");
+	for (var i = 0; i < len; i++) {
+		alert("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
 	}
-	// for an insert statement, this property will return the ID of the last inserted row
-	console.log("Last inserted row ID = " + results.insertId);
 }
 
 // Transaction error callback
 //
 function errorCB(err) {
-	console.log("Error processing SQL: "+err.code);
+	console.log("Error processing SQL: " + err.code);
 }
 
 // Transaction success callback
@@ -103,7 +100,6 @@ function successCB() {
 // Cordova is ready
 //
 function testDB() {
-	alert(testDB);
 	var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
 	db.transaction(populateDB, errorCB, successCB);
 }
