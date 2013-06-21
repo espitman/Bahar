@@ -164,7 +164,7 @@ function insertProfile(profileData) {
 
 }
 
-function doInsertProfile(tx, dates) {
+function doInsertProfile(tx, profileData) {
 	tx.executeSql('CREATE TABLE IF NOT EXISTS profiles (id unique, prfNo, date)');
 	tx.executeSql('INSERT INTO profiles (prfNo,date) VALUES ("' + profileData["prfNo"] + ',' + profileData["date"] + '")');
 }
