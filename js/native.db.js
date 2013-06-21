@@ -124,7 +124,7 @@ function show_pages(data) {
 }
 
 function getProfileDataFromServer(prfNo) {
-	alert('getProfileDataFromServer');
+	alert('getProfileDataFromServer'+prfNo);
 	$.ajax({
 		type : "GET",
 		dataType : "json",
