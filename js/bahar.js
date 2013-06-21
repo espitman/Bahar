@@ -38,7 +38,7 @@ function first_page_callback(data) {
 $(document).on('pageinit', '#home', function() {
 	
 	//iDB.createDB();
-	//iDB.insertDB();
+	iDB.insertDB();
 	iDB.selectCB();
 	
 	var url = URL;
