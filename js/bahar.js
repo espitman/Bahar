@@ -24,11 +24,18 @@ $(document).bind("mobileinit", function() {
 //-----------------------------------------------------------
 
 function first_page_callback(data) {
+	var dates = {};
+	var i = 1;
 	for (var x in data) {
 		data[x]["fld_Year"] = parseInt(data[x]["fld_Year"]) - 1300;
 		var date = data[x]["fld_Year"] + "/" + data[x]["fld_Month"] + "/" + data[x]["fld_Day"];
 		$("#profiles").append("<li style='text-align:center;' data-date='" + date + "' data-prfNo='" + data[x]["fld_Profile_No"] + "'>" + data[x]["fld_Year"] + "/" + data[x]["fld_Month"] + "/" + data[x]["fld_Day"] + "</li>");
+		dates[i++] = date;
 	}
+	
+	insertDates(dates);
+	b_successCB();
+	
 	$("#home ul.mlist").listview("refresh");
 	$.mobile.hidePageLoadingMsg();
 }
@@ -36,9 +43,7 @@ function first_page_callback(data) {
 
 $(document).on('pageinit', '#home', function() {
 	
-	
-	testDB();
-	successCB();
+
 	
 	var url = URL;
 	$.ajax({
