@@ -44,15 +44,15 @@ function testDB() {
 //***********************************************************************************
 function insertDates(dates) {
 	var db = window.openDatabase("Bahar", "1.0", "BaharDB", 200000);
-	db.transaction(doInsertDates(dates), errorCB);
+	db.transaction(doInsertDates, errorCB);
+	for (var x in dates) {
+		alert(dates[x]);
+	}
 }
 
 function doInsertDates(dates) {
 	tx.executeSql('CREATE TABLE IF NOT EXISTS DATES (id unique, date)');
-	for (var x in dates) {
-		alert(dates[x]);
-		tx.executeSql('INSERT INTO DATES (date) VALUES (' + date[x] + ')');
-	}
+	//tx.executeSql('INSERT INTO DATES (date) VALUES (' + date[x] + ')');
 }
 
 function b_successCB() {
