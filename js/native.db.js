@@ -66,7 +66,7 @@ function b_querySuccess(tx, results) {
 function registerProfile(prfNo) {
 	alert("registerProfile:: "+prfNo)
 	var db = window.openDatabase("Bahar", "1.0", "BaharDB", 200000);
-	db.transaction(function(tx,prfNo) {
+	db.transaction(function(tx) {
 		doRegisterProfile(tx, prfNo);
 	}, errorCB);
 }
