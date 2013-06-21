@@ -52,7 +52,9 @@ function insertDates(dates) {
 
 function doInsertDates(tx, dates) {
 	tx.executeSql('CREATE TABLE IF NOT EXISTS DATES (id unique, date)');
-	//tx.executeSql('INSERT INTO DATES (date) VALUES (' + date[x] + ')');
+	for(var x in dates) {
+		tx.executeSql('INSERT INTO DATES (date) VALUES (' + date[x] + ')');
+	}
 }
 
 function b_successCB() {
