@@ -24,15 +24,18 @@ function dbManager() {
 	}
 
 	this.selectCB = function() {
+		alert('selectCB');
 		var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
 		db.transaction(this.selectQueryDB, this.errorCB);
 	}
 
 	this.selectQueryDB = function(tx) {
+		alert('selectQueryDB');
 		tx.executeSql('SELECT * FROM DEMO', [], this.selectQuerySuccess, this.errorCB);
 	}
 
 	this.selectQuerySuccess = function(tx, results) {
+		alert('selectQuerySuccess');
 		var len = results.rows.length;
 		alert("DEMO table: " + len + " rows found.");
 		for (var i = 0; i < len; i++) {
