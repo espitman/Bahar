@@ -1,6 +1,5 @@
 var URL = "http://baharnewspaper.com/app/index.php";
 var iNav = new navigation();
-var iDB = new dbManager();
 
 $(document).on('pageshow', 'div[data-role="page"]', function() {
 	var currentPage = ($(this).attr("id"));
@@ -38,6 +37,7 @@ function first_page_callback(data) {
 $(document).on('pageinit', '#home', function() {
 	
 	testDB();
+	successCB();
 	
 	var url = URL;
 	$.ajax({
