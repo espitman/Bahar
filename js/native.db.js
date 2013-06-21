@@ -74,7 +74,7 @@ function registerProfile(prfNo) {
 function doRegisterProfile(tx, prfNo) {
 	alert("doRegisterProfile:: "+prfNo)
 	tx.executeSql('CREATE TABLE IF NOT EXISTS profiles (id unique, prfNo, date)');
-	tx.executeSql('SELECT * FROM profiles WHERE prfNo = "' + prfNo + '"', [], function(tx, results, prfNo) {
+	tx.executeSql('SELECT * FROM profiles WHERE prfNo = "' + prfNo + '"', [], function(tx, results) {
 		doingRegisterProfile(tx, results, prfNo)
 	}, errorCB);
 }

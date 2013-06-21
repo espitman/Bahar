@@ -40,6 +40,8 @@ function first_page_callback(data) {
 
 $(document).on('pageinit', '#home', function() {
 	
+	
+	
 	var url = URL;
 	$.ajax({
 		type : 'GET',
