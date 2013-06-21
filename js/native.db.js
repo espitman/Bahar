@@ -72,7 +72,9 @@ function registerProfile(prfNo) {
 
 function doRegisterProfile(tx, prfNo) {
 	tx.executeSql('CREATE TABLE IF NOT EXISTS profiles (id unique, prfNo, date)');
-	tx.executeSql('SELECT * FROM profiles WHERE prfNo = "' + prfNo + '"', [], doingRegisterProfile, errorCB);
+	tx.executeSql('SELECT * FROM profiles WHERE prfNo = "' + prfNo + '"', [], function(tx, results, prfNo) {
+		doingRegisterProfile(tx, results, prfNo)
+	}, errorCB);
 }
 
 function show_pages(data) {
@@ -81,10 +83,10 @@ function show_pages(data) {
 	$("#pages #pages-ul").empty();
 	var i = 1;
 	prfNo = data["prfNo"];
-	
+
 	profileData = {};
 	profileData["prfNo"] = prfNo;
-	profileData["date"] = date["date"]; 
+	profileData["date"] = date["date"];
 	insertProfile(profileData);
 
 	$("#pages #pages-ul").attr("data-prfNo", prfNo);
@@ -94,7 +96,7 @@ function show_pages(data) {
 		$("#pages #pages-ul li:nth-child(1)").addClass("active");
 		i++;
 	}
-	
+
 	$("#pages #pages-ul").imageready(function() {
 		var pageCount = i - 1;
 		$("#pages #pages-ul li").css({
@@ -137,7 +139,7 @@ function getProfileDataFromServer(prfNo) {
 	});
 }
 
-function doingRegisterProfile(tx, results) {
+function doingRegisterProfile(tx, results, prfNo) {
 	var len = results.rows.length;
 	alert(len);
 	if (len == 0) {
@@ -148,7 +150,7 @@ function doingRegisterProfile(tx, results) {
 }
 
 function insertProfile(profileData) {
-	alert("AA"+profileData["prfNo"]+','+profileData["date"]);
+	alert("AA" + profileData["prfNo"] + ',' + profileData["date"]);
 	var db = window.openDatabase("Bahar", "1.0", "BaharDB", 200000);
 	db.transaction(function(tx) {
 		doInsertProfile(tx, profileData);
@@ -157,7 +159,7 @@ function insertProfile(profileData) {
 }
 
 function doInsertProfile(tx, dates) {
-	alert(profileData["prfNo"]+','+profileData["date"]);
+	alert(profileData["prfNo"] + ',' + profileData["date"]);
 	tx.executeSql('CREATE TABLE IF NOT EXISTS profiles (id unique, prfNo, date)');
 	tx.executeSql('INSERT INTO profiles (prfNo,date) VALUES ("' + profileData["prfNo"] + ',' + profileData["date"] + '")');
 }
