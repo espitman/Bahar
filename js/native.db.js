@@ -126,16 +126,21 @@ function show_pages(data) {
 function getProfileDataFromServer(prfNo) {
 	alert('getProfileDataFromServer');
 	$.ajax({
-		type : 'GET',
+		type : "POST",
+		dataType : "json",
 		data : {
 			f : "pages_page",
 			prfNo : prfNo,
 			callback : 'show_pages'
 		},
 		url : URL,
-		async : false,
-		contentType : "application/json",
-		dataType : 'jsonp'
+		async : true,
+		success : function(response) {
+			console.log(response);
+		},
+		error : function() {
+			alert("error!!");
+		}
 	});
 }
 
