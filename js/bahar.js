@@ -1,5 +1,6 @@
 var URL = "http://baharnewspaper.com/app/index.php";
 var iNav = new navigation();
+var iDB = new dbManager();
 
 $(document).on('pageshow', 'div[data-role="page"]', function() {
 	var currentPage = ($(this).attr("id"));
@@ -36,7 +37,9 @@ function first_page_callback(data) {
 
 $(document).on('pageinit', '#home', function() {
 	
-	testDB();
+	iDB.createDB();
+	iDB.insertDB();
+	iDB.selectCB();
 	
 	var url = URL;
 	$.ajax({
@@ -56,7 +59,7 @@ $(document).on('pageinit', '#home', function() {
 });
 //-----------------------------------------------------------
 $(document).on("click", "#home ul li", function() {
-	successCB();
+	
 	var prfNo = $(this).attr("data-prfNo");
 	$.mobile.showPageLoadingMsg();
 	var url = URL;
