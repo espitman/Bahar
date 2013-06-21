@@ -103,12 +103,13 @@ function doingRegisterProfile(tx, results) {
 function insertProfile(profileData) {
 	var db = window.openDatabase("Bahar", "1.0", "BaharDB", 200000);
 	db.transaction(function(tx) {
-		doInsertProfile(tx, profileData)
+		doInsertProfile(tx, profileData);
 	}, errorCB);
 
 }
 
 function doInsertProfile(tx, dates) {
+	alert(profileData["prfNo"]+','+profileData["date"]);
 	tx.executeSql('CREATE TABLE IF NOT EXISTS profiles (id unique, prfNo, date)');
 	tx.executeSql('INSERT INTO profiles (prfNo,date) VALUES ("' + profileData["prfNo"] + ',' + profileData["date"] + '")');
 }
