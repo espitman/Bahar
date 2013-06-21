@@ -68,51 +68,7 @@ $(document).on("click", "#home ul li", function() {
 	*/
 });
 
-function show_pages(data) {
-	alert('show_pages');
-	var w = $(".ui-content").width();
-	$("#pages #pages-ul").empty();
-	var i = 1;
-	prfNo = data["prfNo"];
-	
-	profileData = {};
-	profileData["prfNo"] = prfNo;
-	profileData["date"] = date["date"]; 
-	insertProfile(profileData);
 
-	$("#pages #pages-ul").attr("data-prfNo", prfNo);
-
-	for (var x in data["data"]) {
-		$("#pages #pages-ul").append("<li data-title='" + data["data"][x]["category"] + "' data-page='" + i + "'>" + "<img src='http://www.baharnewspaper.com/Pdfax/" + data["date"] + "/" + data["data"][x]["page"] + ".jpg' />" + "</li>");
-		$("#pages #pages-ul li:nth-child(1)").addClass("active");
-		i++;
-	}
-	
-	$("#pages #pages-ul").imageready(function() {
-		var pageCount = i - 1;
-		$("#pages #pages-ul li").css({
-			"width" : w + "px"
-		});
-		var iw = parseInt($("#pages #pages-ul li img").width());
-
-		if (iw > w) {
-			$("#pages #pages-ul li img").css({
-				"width" : (w - 30) + "px"
-			});
-		}
-
-		$("#pages #pages-ul").css({
-			"width" : (w * pageCount) + "px",
-			"left" : (w * (pageCount - 1)) + "px"
-		});
-
-		$.mobile.changePage("#pages", {
-			transition : "slide"
-		});
-		$.mobile.hidePageLoadingMsg();
-	});
-	setPageTitle(0);
-}
 
 //-----------------------------------------------------------
 
