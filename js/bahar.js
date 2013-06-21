@@ -38,8 +38,8 @@ function first_page_callback(data) {
 $(document).on('pageinit', '#home', function() {
 	
 	//iDB.createDB();
-	iDB.insertDB();
-	iDB.selectCB();
+	insertDB();
+	selectCB();
 	
 	var url = URL;
 	$.ajax({

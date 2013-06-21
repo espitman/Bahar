@@ -1,50 +1,44 @@
-function dbManager() {
+function createDBexec() {
+	tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
+}
 
-	this.createDBexec = function() {
-		tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
-	}
+function createDB() {
+	var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
+	db.transaction(createDBexec, errorCB);
+}
 
-	this.createDB = function() {
-		var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
-		db.transaction(this.createDBexec, this.errorCB);
-	}
+function errorCB(err) {
+	alert("Error processing SQL: " + err.code);
+}
 
-	this.errorCB = function(err) {
-		alert("Error processing SQL: " + err.code);
-	}
+function populateDB(tx) {
+	//tx.executeSql('DROP TABLE IF EXISTS DEMO');
+	tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
+	tx.executeSql('INSERT INTO DEMO (id, data) VALUES (1, "First row")');
+	tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
+}
 
-	this.populateDB = function(tx) {
-		tx.executeSql('DROP TABLE IF EXISTS DEMO');
-		tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
-		tx.executeSql('INSERT INTO DEMO (id, data) VALUES (1, "First row")');
-		tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
-		
-		tx.executeSql('SELECT * FROM DEMO', [], this.selectQuerySuccess, this.errorCB);
-		
-	}
+function insertDB() {
+	var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
+	db.transaction(populateDB, errorCB);
+}
 
-	this.insertDB = function() {
-		var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
-		db.transaction(this.populateDB, this.errorCB);
-	}
+function selectCB() {
+	alert('selectCB');
+	var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
+	db.transaction(selectQueryDB, errorCB);
+}
 
-	this.selectCB = function() {
-		alert('selectCB');
-		var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
-		db.transaction(this.selectQueryDB, this.errorCB);
-	}
+function selectQueryDB(tx) {
+	alert('selectQueryDB');
+	tx.executeSql('SELECT * FROM DEMO', [], selectQuerySuccess, errorCB);
+}
 
-	this.selectQueryDB = function(tx) {
-		alert('selectQueryDB');
-		tx.executeSql('SELECT * FROM DEMO', [], this.selectQuerySuccess, this.errorCB);
-	}
-
-	this.selectQuerySuccess = function(tx, results) {
-		alert('selectQuerySuccess');
-		var len = results.rows.length;
-		alert("DEMO table: " + len + " rows found.");
-		for (var i = 0; i < len; i++) {
-			alert("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
-		}
+function selectQuerySuccess(tx, results) {
+	alert('selectQuerySuccess');
+	var len = results.rows.length;
+	alert("DEMO table: " + len + " rows found.");
+	for (var i = 0; i < len; i++) {
+		alert("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
 	}
 }
