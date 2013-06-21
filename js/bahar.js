@@ -69,6 +69,7 @@ $(document).on("click", "#home ul li", function() {
 });
 
 function show_pages(data) {
+	alert('show_pages');
 	var w = $(".ui-content").width();
 	$("#pages #pages-ul").empty();
 	var i = 1;

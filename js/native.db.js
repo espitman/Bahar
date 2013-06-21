@@ -101,6 +101,7 @@ function doingRegisterProfile(tx, results) {
 }
 
 function insertProfile(profileData) {
+	alert("AA"+profileData["prfNo"]+','+profileData["date"]);
 	var db = window.openDatabase("Bahar", "1.0", "BaharDB", 200000);
 	db.transaction(function(tx) {
 		doInsertProfile(tx, profileData);
