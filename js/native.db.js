@@ -132,7 +132,7 @@ function getProfileDataFromServer(prfNo) {
 			prfNo : prfNo,
 			callback : 'show_pages'
 		},
-		url : url,
+		url : URL,
 		async : false,
 		contentType : "application/json",
 		dataType : 'jsonp'
