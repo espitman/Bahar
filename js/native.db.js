@@ -53,7 +53,6 @@ function insertDates(dates) {
 function doInsertDates(tx, dates) {
 	tx.executeSql('CREATE TABLE IF NOT EXISTS DATES (id unique, date)');
 	for (var x in dates) {
-		alert(dates[x]);
 		tx.executeSql('INSERT INTO DATES (date) VALUES ("' + dates[x] + '")');
 	}
 }
@@ -74,5 +73,28 @@ function b_querySuccess(tx, results) {
 	alert("DATES table: " + len + " rows found.");
 	for (var i = 0; i < len; i++) {
 		alert("Row = " + i + " ID = " + results.rows.item(i).id + " Date =  " + results.rows.item(i).date);
+	}
+}
+
+//**************************************Proflie*********************************************
+function registerProfile(prfNo) {
+	var db = window.openDatabase("Bahar", "1.0", "BaharDB", 200000);
+	db.transaction(function(tx) {
+		doRegisterProfile(tx, prfNo);
+	}, errorCB);
+}
+
+function doRegisterProfile(tx, prfNo) {
+	tx.executeSql('CREATE TABLE IF NOT EXISTS profiles (id unique, prfNo)');
+	tx.executeSql('SELECT * FROM profiles WHERE prfNo = "' + prfNo + '"', [],doingRegisterProfile, errorCB);
+}
+
+function doingRegisterProfile(tx, results) {
+	var len = results.rows.length;
+	alert(len);
+	if(len == 0) {
+		alert("get data from server");
+	} else {
+		alert("get data from sqllite");
 	}
 }

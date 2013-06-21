@@ -33,17 +33,12 @@ function first_page_callback(data) {
 		dates[i++] = date;
 	}
 	
-	insertDates(dates);
-	b_successCB();
-	
 	$("#home ul.mlist").listview("refresh");
 	$.mobile.hidePageLoadingMsg();
 }
 
 
 $(document).on('pageinit', '#home', function() {
-	
-
 	
 	var url = URL;
 	$.ajax({
@@ -67,7 +62,8 @@ $(document).on("click", "#home ul li", function() {
 	var prfNo = $(this).attr("data-prfNo");
 	$.mobile.showPageLoadingMsg();
 	var url = URL;
-	
+	registerProfile(prfNo);
+	/*
 	$.ajax({
 		type : 'GET',
 		data : {
@@ -80,9 +76,7 @@ $(document).on("click", "#home ul li", function() {
 		contentType : "application/json",
 		dataType : 'jsonp'
 	});
-	
-	
-
+	*/
 });
 
 function show_pages(data) {
