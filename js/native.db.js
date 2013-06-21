@@ -138,8 +138,9 @@ function getProfileDataFromServer(prfNo) {
 		success : function(response) {
 			console.log(response);
 		},
-		error : function() {
+		error : function(response) {
 			alert("error!!");
+			console.log(response);
 		}
 	});
 }
