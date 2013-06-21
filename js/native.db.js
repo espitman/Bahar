@@ -42,20 +42,6 @@ function testDB() {
 }
 
 //***********************************************************************************
-function insertDates(dates) {
-	var db = window.openDatabase("Bahar", "1.0", "BaharDB", 200000);
-	db.transaction(function(tx) {
-		doInsertDates(tx, dates)
-	}, errorCB);
-
-}
-
-function doInsertDates(tx, dates) {
-	tx.executeSql('CREATE TABLE IF NOT EXISTS DATES (id unique, date)');
-	for (var x in dates) {
-		tx.executeSql('INSERT INTO DATES (date) VALUES ("' + dates[x] + '")');
-	}
-}
 
 function b_successCB() {
 	var db = window.openDatabase("Bahar", "1.0", "BaharDB", 200000);
@@ -85,16 +71,44 @@ function registerProfile(prfNo) {
 }
 
 function doRegisterProfile(tx, prfNo) {
-	tx.executeSql('CREATE TABLE IF NOT EXISTS profiles (id unique, prfNo)');
-	tx.executeSql('SELECT * FROM profiles WHERE prfNo = "' + prfNo + '"', [],doingRegisterProfile, errorCB);
+	tx.executeSql('CREATE TABLE IF NOT EXISTS profiles (id unique, prfNo, date)');
+	tx.executeSql('SELECT * FROM profiles WHERE prfNo = "' + prfNo + '"', [], doingRegisterProfile, errorCB);
+}
+
+function getProfileDataFromServer(prfNo) {
+	$.ajax({
+		type : 'GET',
+		data : {
+			f : "pages_page",
+			prfNo : prfNo,
+			callback : 'show_pages'
+		},
+		url : url,
+		async : false,
+		contentType : "application/json",
+		dataType : 'jsonp'
+	});
 }
 
 function doingRegisterProfile(tx, results) {
 	var len = results.rows.length;
 	alert(len);
-	if(len == 0) {
-		alert("get data from server");
+	if (len == 0) {
+		getProfileDataFromServer(prfNo);
 	} else {
 		alert("get data from sqllite");
 	}
+}
+
+function insertProfile(profileData) {
+	var db = window.openDatabase("Bahar", "1.0", "BaharDB", 200000);
+	db.transaction(function(tx) {
+		doInsertProfile(tx, profileData)
+	}, errorCB);
+
+}
+
+function doInsertProfile(tx, dates) {
+	tx.executeSql('CREATE TABLE IF NOT EXISTS profiles (id unique, prfNo, date)');
+	tx.executeSql('INSERT INTO profiles (prfNo,date) VALUES ("' + profileData["prfNo"] + ',' + profileData["date"] + '")');
 }

@@ -64,18 +64,7 @@ $(document).on("click", "#home ul li", function() {
 	var url = URL;
 	registerProfile(prfNo);
 	/*
-	$.ajax({
-		type : 'GET',
-		data : {
-			f : "pages_page",
-			prfNo : prfNo,
-			callback : 'show_pages'
-		},
-		url : url,
-		async : false,
-		contentType : "application/json",
-		dataType : 'jsonp'
-	});
+
 	*/
 });
 
@@ -84,7 +73,11 @@ function show_pages(data) {
 	$("#pages #pages-ul").empty();
 	var i = 1;
 	prfNo = data["prfNo"];
-	var bFolder = "Bahar/"+prfNo;
+	
+	profileData = {};
+	profileData["prfNo"] = prfNo;
+	profileData["date"] = date["date"]; 
+	insertProfile(profileData);
 
 	$("#pages #pages-ul").attr("data-prfNo", prfNo);
 
