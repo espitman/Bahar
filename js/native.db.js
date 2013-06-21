@@ -64,6 +64,7 @@ function b_querySuccess(tx, results) {
 
 //**************************************Proflie*********************************************
 function registerProfile(prfNo) {
+	alert("registerProfile:: "+prfNo)
 	var db = window.openDatabase("Bahar", "1.0", "BaharDB", 200000);
 	db.transaction(function(tx,prfNo) {
 		doRegisterProfile(tx, prfNo);
@@ -71,6 +72,7 @@ function registerProfile(prfNo) {
 }
 
 function doRegisterProfile(tx, prfNo) {
+	alert("doRegisterProfile:: "+prfNo)
 	tx.executeSql('CREATE TABLE IF NOT EXISTS profiles (id unique, prfNo, date)');
 	tx.executeSql('SELECT * FROM profiles WHERE prfNo = "' + prfNo + '"', [], function(tx, results, prfNo) {
 		doingRegisterProfile(tx, results, prfNo)
@@ -124,7 +126,7 @@ function show_pages(data) {
 }
 
 function getProfileDataFromServer(prfNo) {
-	alert('getProfileDataFromServer'+prfNo);
+	alert('getProfileDataFromServer::'+prfNo);
 	$.ajax({
 		type : "GET",
 		dataType : "json",
@@ -146,6 +148,7 @@ function getProfileDataFromServer(prfNo) {
 }
 
 function doingRegisterProfile(tx, results, prfNo) {
+	alert("doingRegisterProfile:: "+prfNo);
 	var len = results.rows.length;
 	alert(len);
 	if (len == 0) {
