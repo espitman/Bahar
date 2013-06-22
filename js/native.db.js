@@ -166,10 +166,8 @@ function insertProfile(profileData) {
 }
 
 function doInsertProfile(tx, profileData) {
-	console.log(profileData);
-	tx.executeSql('DROP TABLE IF EXISTS profiles');
+	//tx.executeSql('DROP TABLE IF EXISTS profiles');
 	tx.executeSql('CREATE TABLE IF NOT EXISTS profiles (id unique, prfNo, date)');
 	var sql = 'INSERT INTO profiles (prfNo,date) VALUES ("' + profileData["prfNo"] + '","' + profileData["date"] + '")';
-	console.log(sql);
 	tx.executeSql(sql);
 }
